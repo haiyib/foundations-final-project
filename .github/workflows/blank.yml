@@ -50,6 +50,12 @@ jobs:
         run: |
           jupyter nbconvert --execute --to notebook cheapshark-update.ipynb --inplace
 
+      - name: Show top20 CSV preview
+        run: |
+          echo "Top 20 deals CSV preview:"
+          ls -l steam_deals_top20_rangeplot.csv || echo "CSV not found"
+          head -n 5 steam_deals_top20_rangeplot.csv || echo "No preview"
+
       - name: Commit and push any changes
         run: |
           git config user.name "Automated"
