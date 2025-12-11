@@ -16,8 +16,8 @@
     <style>
         body {
             margin: 0;
-            background-color: rgb(255, 255, 255);
-            /* Datawrapper-style sans-serif for everything by default */
+            background-color: #000000; /* black background */
+            color: #ffffff;            /* default text color: white */
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
@@ -33,37 +33,37 @@
             text-align: center;
             font-size: 2.4em;
             margin: 1.5em 0 0.5em;
-            /* Only the main title uses Merriweather */
             font-family: "Merriweather", "Times New Roman", Times, serif;
+            color: #ffffff;
         }
 
         h3 {
             text-align: center;
             font-weight: normal;
-            color: #555;
+            color: #f0f0f0;
             margin-top: 0;
-            /* inherits Helvetica from body; no font-family override needed */
         }
 
-        /* 小标题（第二个图上面用） */
+        /* Subheading above the second chart */
         h2 {
             font-size: 1.6em;
-            margin: 3em 0 0.5em;
+            margin: 4em 0 0.5em; /* extra top margin to add space before second chart */
             font-weight: 600;
+            color: #ffffff;
         }
 
         p {
-            color: #444;
+            color: #f0f0f0;
             line-height: 1.5;
         }
 
-        /* Card that holds the chart */
+        /* Card style (not currently used for charts, but kept if needed later) */
         .chart-card {
             max-width: 900px;
             margin: 2em auto;
-            background: #ffffff;
+            background: #111111;
             border-radius: 10px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.7);
             padding: 1.5em 1em;
         }
 
@@ -71,50 +71,56 @@
             margin: 0 0 0.5em;
             font-weight: 600;
             text-align: center;
-            /* also inherits Helvetica from body */
+            color: #ffffff;
         }
 
         .chart-card p {
             font-size: 0.9em;
             text-align: center;
             margin-bottom: 1em;
-            color: #666;
+            color: #f0f0f0;
         }
 
-        /* Make iframe responsive inside the card */
+        /* Make iframe responsive inside the card, and add vertical space around charts */
         .chart-wrapper {
             position: relative;
             width: 100%;
             overflow: hidden;
+            margin: 2.5em 0; /* space above and below each chart */
         }
 
         .chart-wrapper iframe {
-            width: 100% !important;   /* fill the card but not the whole page */
+            width: 100% !important;
             border: none;
         }
 
         #footer {
             text-align: center;
             padding: 4em 1em;
-            background-color: #f0f1ff;
-            border-top: solid white 5px;
+            background-color: #000000;
+            border-top: solid #111111 5px;
             font-size: 0.9em;
-            color: #555;
+            color: #f0f0f0;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🎮 Steam Sales Monitor 👾</h1>
-        <h3>A look at how Steam sale discounts relate to deal ratings</h3>
+        <h3>A snapshot of how Steam sale discounts relate to deal ratings</h3>
+
+        <!-- ✏️ Overall introductory paragraph for the whole page -->
         <p>
-            This page embeds an interactive Datawrapper scatter plot showing Steam game deals.
-            Hover over the points to see game titles and deal details.
+            This page shows two interactive Datawrapper charts built from the CheapShark API.
+            The first chart explores how game release dates relate to sale prices, and the second
+            compares normal prices to sale prices for the top Steam deals.
         </p>
-        <!-- 当前日期时间 -->
+
+        <!-- Current date and time will be inserted here by JavaScript -->
         <p id="current-datetime"></p>
 
-        <!-- 第一个图：散点图 -->
+        <!-- First chart: scatter plot -->
+        <!-- ✏️ You can write an extra paragraph describing the first chart right above or below this comment if you want -->
         <div class="chart-wrapper">
             <!-- Your Datawrapper scatter plot -->
             <iframe
@@ -130,11 +136,13 @@
             </iframe>
         </div>
 
-        <!-- 第二个图：range plot（普通价 vs 折后价） -->
+        <!-- Second chart: range plot (normal price vs sale price) -->
         <h2>Normal vs. sale price for top Steam deals</h2>
+
+        <!-- ✏️ Paragraph describing the second chart -->
         <p>
-            This range plot compares each game's regular price with its current sale price
-            for a selection of the best-rated Steam deals.
+            This range plot shows the 20 highest-rated Steam deals. Each line compares a game's
+            original price to its current sale price. Longer lines represent deeper discounts.
         </p>
 
         <div class="chart-wrapper">
@@ -155,7 +163,7 @@
 
     <!-- Scripts -->
     <script type="text/javascript">
-        // 设置当前日期时间
+        // Set current date/time
         document.addEventListener("DOMContentLoaded", function () {
             var dtElem = document.getElementById("current-datetime");
             if (dtElem) {
@@ -173,7 +181,7 @@
             }
         });
 
-        // Datawrapper auto-resize script（原样保留）
+        // Datawrapper auto-resize script (keep as is)
         window.addEventListener("message", function(a) {
             if (void 0 !== a.data["datawrapper-height"]) {
                 var iframes = document.querySelectorAll("iframe");
@@ -190,4 +198,3 @@
     </script>
 </body>
 </html>
-
