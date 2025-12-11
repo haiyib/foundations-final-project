@@ -57,31 +57,7 @@
             line-height: 1.5;
         }
 
-        /* Card style (not currently used for charts, but kept if needed later) */
-        .chart-card {
-            max-width: 900px;
-            margin: 2em auto;
-            background: #111111;
-            border-radius: 10px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.7);
-            padding: 1.5em 1em;
-        }
-
-        .chart-card h4 {
-            margin: 0 0 0.5em;
-            font-weight: 600;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .chart-card p {
-            font-size: 0.9em;
-            text-align: center;
-            margin-bottom: 1em;
-            color: #f0f0f0;
-        }
-
-        /* Make iframe responsive inside the card, and add vertical space around charts */
+        /* Wrapper around each chart, adds vertical space */
         .chart-wrapper {
             position: relative;
             width: 100%;
@@ -109,7 +85,7 @@
         <h1>🎮 Steam Sales Monitor 👾</h1>
         <h3>A snapshot of how Steam sale discounts relate to deal ratings</h3>
 
-        <!-- ✏️ Overall introductory paragraph for the whole page -->
+        <!-- Intro paragraph for the whole page -->
         <p>
             This page shows two interactive Datawrapper charts built from the CheapShark API.
             The first chart explores how game release dates relate to sale prices, and the second
@@ -120,9 +96,7 @@
         <p id="current-datetime"></p>
 
         <!-- First chart: scatter plot -->
-        <!-- ✏️ You can write an extra paragraph describing the first chart right above or below this comment if you want -->
         <div class="chart-wrapper">
-            <!-- Your Datawrapper scatter plot -->
             <iframe
                 title="Steam Game Deals: How Much You Save vs. How Good the Deal Is"
                 aria-label="Scatter Plot"
@@ -136,26 +110,25 @@
             </iframe>
         </div>
 
-        <!-- Second chart: range plot (normal price vs sale price) -->
-        <h2>Normal vs. sale price for top Steam deals</h2>
+        <!-- Second chart: range plot (normal price vs sale price, top 20 games) -->
+        <h2>Top 20 Games on Steam by Deal Rating</h2>
 
-        <!-- ✏️ Paragraph describing the second chart -->
+        <!-- Paragraph describing the second chart -->
         <p>
             This range plot shows the 20 highest-rated Steam deals. Each line compares a game's
-            original price to its current sale price. Longer lines represent deeper discounts.
+            normal price to its current sale price, so longer lines indicate deeper discounts.
         </p>
 
         <div class="chart-wrapper">
-            <!-- Second Datawrapper chart: replace ABCD1 with your own chart ID -->
             <iframe
-                title="Steam Deals: Normal vs Sale Price (Top 20)"
+                title="Top 20 Games on Steam By Deal Rating"
                 aria-label="Range Plot"
-                id="datawrapper-chart-ABCD1"
-                src="https://datawrapper.dwcdn.net/ABCD1/1/"
+                id="datawrapper-chart-QZJgA"
+                src="https://datawrapper.dwcdn.net/QZJgA/2/"
                 scrolling="no"
                 frameborder="0"
                 style="width: 0; min-width: 100% !important; border: none;"
-                height="600"
+                height="420"
                 data-external="1">
             </iframe>
         </div>
@@ -181,7 +154,7 @@
             }
         });
 
-        // Datawrapper auto-resize script (keep as is)
+        // Datawrapper auto-resize script (shared by both charts)
         window.addEventListener("message", function(a) {
             if (void 0 !== a.data["datawrapper-height"]) {
                 var iframes = document.querySelectorAll("iframe");
